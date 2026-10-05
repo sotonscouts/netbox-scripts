@@ -24,29 +24,30 @@ class RouterValidationScript(Script):
                     "Missing loopback interface.",
                     obj=router,
                 )
-            else:
-                self._assert(
-                    loopback_interface.enabled,
-                    "Loopback interface is not enabled.",
-                    obj=router,
-                )
-                self._assert(
-                    loopback_interface.ip_addresses.exists(),
-                    "Loopback interface has no IP address assigned.",
-                    obj=router,
-                )
-                self._assert(
-                    loopback_interface.type == "virtual",
-                    "Loopback interface is not of type 'virtual'.",
-                    obj=router,
-                )
-                self._assert(
-                    not loopback_interface.untagged_vlan.exists(),
-                    "Loopback interface has VLANs assigned.",
-                    obj=router,
-                )
-                self._assert(
-                    not loopback_interface.tagged_vlans.exists(),
-                    "Loopback interface has VLANs assigned.",
-                    obj=router,
-                )
+                return
+
+            self._assert(
+                loopback_interface.enabled,
+                "Loopback interface is not enabled.",
+                obj=router,
+            )
+            self._assert(
+                loopback_interface.ip_addresses.exists(),
+                "Loopback interface has no IP address assigned.",
+                obj=router,
+            )
+            self._assert(
+                loopback_interface.type == "virtual",
+                "Loopback interface is not of type 'virtual'.",
+                obj=router,
+            )
+            self._assert(
+                not loopback_interface.untagged_vlan.exists(),
+                "Loopback interface has VLANs assigned.",
+                obj=router,
+            )
+            self._assert(
+                not loopback_interface.tagged_vlans.exists(),
+                "Loopback interface has VLANs assigned.",
+                obj=router,
+            )
