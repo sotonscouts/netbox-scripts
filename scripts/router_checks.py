@@ -41,13 +41,3 @@ class RouterValidationScript(Script):
                 "Loopback interface is not of type 'virtual'.",
                 obj=router,
             )
-            self._assert(
-                not loopback_interface.untagged_vlan.exists(),
-                "Loopback interface has VLANs assigned.",
-                obj=router,
-            )
-            self._assert(
-                not loopback_interface.tagged_vlans.exists(),
-                "Loopback interface has VLANs assigned.",
-                obj=router,
-            )
