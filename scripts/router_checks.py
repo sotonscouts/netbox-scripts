@@ -7,7 +7,7 @@ class RouterValidationScript(Script):
     name = "Check Router Config"
 
     def _get_routers(self) -> models.QuerySet[Device]:
-        return Device.objects.filter(role__name__icontains="router")
+        return Device.objects.filter(role__slug="router")
 
     def _assert(self, condition: bool, message: str, obj: models.Model) -> None:
         if not condition:
