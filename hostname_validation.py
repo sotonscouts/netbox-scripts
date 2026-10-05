@@ -9,9 +9,6 @@ class HostnameValidationScript(Script):
     description = "Checks if all hostnames match our format."
 
     def test_hostname_format(self):
-        self.log_info("Starting hostname validation...")
-
-        invalid_count = 0
         devices = Device.objects.select_related("site", "role").all()
 
         for device in devices:
@@ -48,15 +45,5 @@ class HostnameValidationScript(Script):
                     f"Expected format starting with '{expected_prefix}'.",
                     obj=device,
                 )
-                invalid_count += 1
             else:
                 self.log_success(f"Device '{hostname}' is valid.", obj=device)
-
-        if invalid_count > 0:
-            self.log_failure(
-                f"Validation finished. Found {invalid_count} non-compliant device(s)."
-            )
-        else:
-            self.log_success(
-                "Validation finished successfully. All checked devices comply with the naming convention!"
-            )
