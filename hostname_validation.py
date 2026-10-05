@@ -8,7 +8,7 @@ class HostnameValidationScript(Script):
     name = "Validate Device Hostnames"
     description = "Checks if all hostnames match our format."
 
-    def run(self, data, commit):
+    def test_hostname_format(self):
         self.log_info("Starting hostname validation...")
 
         invalid_count = 0
